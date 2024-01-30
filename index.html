@@ -130,8 +130,10 @@
        * Handle click events
        * @param  {Event} event The event object
        */
+      let count = 0;
       function clickHandler(event) {
         // Get the monster
+
         let btn = event.target.closest("[data-monster]");
 
         if (!btn) return;
@@ -144,12 +146,17 @@
         img.src = `${monster.name}.svg`;
         img.alt = monster.alt;
         btn.replaceWith(img);
-
+        count++;
+        console.log(count);
         // Load you lose screen
 
         if (monster.name === "sock") {
           setTimeout(() => {
             window.location.href = "youLose.html";
+          }, 250);
+        } else if (count === monsters.length - 1) {
+          setTimeout(() => {
+            window.location.href = "youWin.html";
           }, 250);
         }
       }
@@ -176,17 +183,17 @@
       const buttons = document.querySelectorAll(".btn");
 
       //Create a click event for each button
-      let counter = 0;
-      buttons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          counter++;
-          if (counter >= 11) {
-            setTimeout(() => {
-              window.location.href = "youWin.html";
-            }, 250);
-          }
-        });
-      });
+      // let counter = 0;
+      // buttons.forEach((button) => {
+      //   button.addEventListener("click", (e) => {
+      //     counter++;
+      //     if (counter === monsters.length - 1) {
+      //       setTimeout(() => {
+      //         window.location.href = "youWin.html";
+      //       }, 250);
+      //     }
+      //   });
+      // });
       //
     </script>
   </body>
